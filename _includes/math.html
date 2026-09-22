@@ -1,0 +1,15 @@
+{%- comment -%}
+  Math rendering. Included only when a page sets `math: true` in front matter.
+
+  How it works: kramdown (Jekyll's Markdown engine) turns $$...$$ into
+  \( ... \) for inline math and \[ ... \] for display math. KaTeX's auto-render
+  extension then finds those delimiters and renders them — see assets/js/math.js
+  for the configuration.
+
+  Note we only register the backslash delimiters, never a bare `$`. That way a
+  dollar sign in ordinary prose or in a code block is never mistaken for math.
+{%- endcomment -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script defer src="{{ '/assets/js/math.js' | relative_url }}"></script>

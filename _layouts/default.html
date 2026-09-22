@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  {%- include head.html -%}
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="site-nav" aria-label="Main">
+        {%- comment -%}
+          `page.nav` in a page's front matter marks which link is current.
+        {%- endcomment -%}
+        <a href="{{ '/' | relative_url }}"{% if page.nav == 'about' %} aria-current="page"{% endif %}>About</a>
+        <a href="{{ '/blog/' | relative_url }}"{% if page.nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="wrap">
+    {{ content }}
+  </main>
+
+  {%- include footer.html -%}
+</body>
+</html>

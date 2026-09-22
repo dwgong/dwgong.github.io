@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-links">
+      {%- for link in site.social -%}
+        <a href="{{ link.url }}" rel="me noopener">{{ link.name }}</a>
+      {%- endfor -%}
+      {%- if site.author.email and site.author.email != "" -%}
+        <a href="mailto:{{ site.author.email }}">Email</a>
+      {%- endif -%}
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </p>
+    <p class="footer-colophon">
+      © {{ site.time | date: "%Y" }} {{ site.author.name | default: site.title }}.
+      Built with <a href="https://jekyllrb.com">Jekyll</a>, hosted on GitHub Pages.
+    </p>
+  </div>
+</footer>

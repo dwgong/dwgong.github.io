@@ -1,0 +1,64 @@
+---
+layout: page
+title: Blog
+nav: blog
+permalink: /blog/
+show_title: false
+---
+
+<h1 class="page-title">Blog</h1>
+
+<p class="page-intro">
+  Progress logs, half-formed ideas, and write-ups from the lab. Subscribe via
+  <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.
+</p>
+
+{%- if site.posts.size == 0 -%}
+
+  <p class="empty-state">No posts yet.</p>
+
+{%- else -%}
+
+  {%- comment -%}
+    Posts grouped by year. `group_by_exp` lets us pull the year out of the date;
+    site.posts is already newest-first, so the groups come out in order too.
+  {%- endcomment -%}
+  {%- assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+
+  {%- for year in posts_by_year -%}
+    <h2 class="year-heading">{{ year.name }}</h2>
+
+    <ul class="post-list">
+      {%- for post in year.items -%}
+        <li>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+
+          <p class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%-d %b" }}
+            </time>
+            {%- if post.tags and post.tags.size > 0 -%}
+              <span class="dot" aria-hidden="true">·</span>
+              <span class="tags">
+                {%- for tag in post.tags -%}
+                  <span class="tag">{{ tag }}</span>
+                {%- endfor -%}
+              </span>
+            {%- endif -%}
+          </p>
+
+          {%- comment -%}
+            Prefer the hand-written `description` from front matter; fall back
+            to the post's first paragraph so an entry is never bare.
+          {%- endcomment -%}
+          {%- if post.description -%}
+            <p class="post-excerpt">{{ post.description }}</p>
+          {%- else -%}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 180 }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endfor -%}
+
+{%- endif -%}

@@ -1,0 +1,86 @@
+# ---------------------------------------------------------------------------
+# Site settings. Edit the values in this block — they show up all over the site.
+# After changing this file you must restart `bundle exec jekyll serve`
+# (Jekyll does not hot-reload _config.yml).
+# ---------------------------------------------------------------------------
+
+title: Dewei Gong
+tagline: Physics PhD student working on AI for science
+description: >-
+  Notes, experiments, and progress logs from a physics PhD student
+  applying machine learning to experimental science.
+
+# Your live URL. For a <username>.github.io repo this is exactly this, and
+# baseurl stays empty.
+url: "https://dwgong.github.io"
+baseurl: ""
+
+author:
+  name: Dewei Gong
+  # Leave `email` blank to keep it off the site. Anything you put here is
+  # published publicly and gets scraped, so use an address you're happy to
+  # hand out. A contact form or your institutional page is a fine alternative.
+  email: ""
+
+# Links rendered in the footer and on the About page. Delete any you don't
+# want; add your own the same way. `icon` matches a name in _includes/icon.html.
+social:
+  - name: GitHub
+    url: https://github.com/dwgong
+    icon: github
+  - name: Google Scholar
+    url: https://scholar.google.com/citations?user=REPLACE_ME
+    icon: scholar
+  - name: arXiv
+    url: https://arxiv.org/a/REPLACE_ME
+    icon: arxiv
+
+# ---------------------------------------------------------------------------
+# Build settings — you rarely need to touch anything below here.
+# ---------------------------------------------------------------------------
+
+# Nice URLs: /blog/2026/my-post/ instead of /blog/2026/09/20/my-post.html
+permalink: /blog/:year/:title/
+
+plugins:
+  - jekyll-feed     # generates /feed.xml so people can subscribe in an RSS reader
+  - jekyll-seo-tag  # generates <title>, description, Open Graph, Twitter cards
+  - jekyll-sitemap  # generates /sitemap.xml for search engines
+
+feed:
+  path: feed.xml
+
+# Default front matter, so you don't repeat yourself in every file.
+# `type:` matters here — without it these defaults also get applied to assets
+# that happen to carry front matter, which wraps your CSS in the page layout.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      nav: blog   # keeps "Blog" highlighted in the nav while reading a post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+markdown: kramdown
+
+kramdown:
+  # Rouge is Jekyll's syntax highlighter; `line_numbers: false` keeps code
+  # blocks copy-pasteable.
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+  # Leave math_engine alone. The default emits <script type="math/tex"> tags,
+  # which assets/js/math.js finds and renders with KaTeX. See _includes/math.html.
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .jekyll-cache

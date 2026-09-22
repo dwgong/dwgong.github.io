@@ -1,0 +1,23 @@
+{%- comment -%}
+  A figure with a caption. Use it in any post like this:
+
+    {% include figure.html
+       src="/assets/img/loss-curve.png"
+       alt="Validation loss against training step, falling then flattening"
+       caption="Validation loss for the three seeds. Shaded band is ±1σ."
+       width="wide" %}
+
+  Parameters:
+    src     — required. Path from the site root, e.g. /assets/img/thing.png
+    alt     — required for accessibility. Describe what the figure SHOWS, not
+              that it is an image. Screen readers and search engines read this.
+    caption — optional. Markdown is not processed here; plain text.
+    width   — optional. Omit for column width; "wide" to bleed past the text
+              column (good for plots), "full" for edge-to-edge.
+{%- endcomment -%}
+<figure class="figure{% if include.width %} figure-{{ include.width }}{% endif %}">
+  <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+  {%- if include.caption -%}
+    <figcaption>{{ include.caption }}</figcaption>
+  {%- endif -%}
+</figure>
