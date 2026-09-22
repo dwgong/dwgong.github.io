@@ -21,8 +21,8 @@
   --accent: #14504c;
   --accent-soft: #e2efec;
 
-  --measure: 42rem;      /* text column width — roughly 85 characters */
-  --measure-wide: 56rem; /* for wide figures, code blocks and tables */
+  --measure: 52rem;      /* text column width */
+  --measure-wide: 64rem; /* for wide figures, code blocks and tables */
   --gutter: 1.25rem;
 
   --radius: 6px;
@@ -65,7 +65,9 @@ body {
   color: var(--text);
   font-family: var(--font-serif);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  /* Longer lines need more leading, or the eye loses its place on the
+     return sweep. Paired with --measure; raise both together. */
+  line-height: 1.72;
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -288,7 +290,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* Let code blocks breathe past the narrow text column, but only once the
    viewport is actually wide enough to give them the room. */
-@media (min-width: 64rem) {
+@media (min-width: 68rem) {
   .prose pre {
     width: var(--measure-wide);
     margin-inline: calc((var(--measure) - var(--measure-wide)) / 2);
@@ -351,7 +353,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* Wide and full figures escape the text column. `width: 100vw` with a
    negative margin is the standard full-bleed trick. */
-@media (min-width: 64rem) {
+@media (min-width: 68rem) {
   .figure-wide {
     width: var(--measure-wide);
     margin-inline: calc((var(--measure) - var(--measure-wide)) / 2);
