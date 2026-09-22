@@ -4,7 +4,7 @@
 # (Jekyll does not hot-reload _config.yml).
 # ---------------------------------------------------------------------------
 
-title: Dewei Gong
+title: Your Name
 tagline: Physics PhD student working on AI for science
 description: >-
   Notes, experiments, and progress logs from a physics PhD student
@@ -16,7 +16,7 @@ url: "https://dwgong.github.io"
 baseurl: ""
 
 author:
-  name: Dewei Gong
+  name: Your Name
   # Leave `email` blank to keep it off the site. Anything you put here is
   # published publicly and gets scraped, so use an address you're happy to
   # hand out. A contact form or your institutional page is a fine alternative.

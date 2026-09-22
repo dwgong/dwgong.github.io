@@ -11,12 +11,12 @@ show_title: false
   <!-- Drop a photo at assets/img/profile.jpg and uncomment this. A friendly,
        well-lit headshot does more work than anything else on this page.
   <img class="intro-photo" src="{{ '/assets/img/profile.jpg' | relative_url }}"
-       alt="Portrait of Dewei Gong">
+       alt="Portrait of [Your Name]">
   -->
   <div class="intro-text">
-    <h1>Dewei Gong</h1>
+    <h1>Your Name</h1>
     <p class="intro-role">
-      PhD student in Physics, Harvard University
+      [Your role — e.g. PhD student in Physics, Your University]
     </p>
     <p class="intro-links">
       <a href="https://github.com/dwgong">GitHub</a>
@@ -65,7 +65,7 @@ simulation, automated fitting of messy spectra]**. I write most of it up in the
 
 <!-- A short chronology. Institutions and years only; save the detail for a CV. -->
 
-- **[Year]–present** — PhD in Physics, Harvard University. Advisor: [Name].
+- **[Year]–present** — PhD in Physics, [Your University]. Advisor: [Name].
 - **[Year]–[Year]** — [BSc/MSc], [Institution].
 - **[Year]** — [Internship, visiting position, or notable project], [Place].
 
