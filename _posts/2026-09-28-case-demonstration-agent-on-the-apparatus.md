@@ -4,6 +4,11 @@ description: "Calibration, optimization, and one discovery — what the agent ha
 date: 2026-09-28
 tags: [rydberg, ai-for-science, agents, lab-notes]
 math: true
+# Kept off the blog index, the RSS feed, the sitemap and the
+# older/newer navigation. Still published and reachable at its own URL.
+# Delete these two lines to list it normally.
+unlisted: true
+sitemap: false
 ---
 
 Both loops require a connection to the physical apparatus. This post collects what

@@ -13,7 +13,13 @@ show_title: false
   <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.
 </p>
 
-{%- if site.posts.size == 0 -%}
+{%- comment -%}
+  Posts marked `unlisted: true` in their front matter are left off this index.
+  They stay published and reachable at their own URL — nothing links to them.
+{%- endcomment -%}
+{%- assign listed = site.posts | where_exp: "post", "post.unlisted != true" -%}
+
+{%- if listed.size == 0 -%}
 
   <p class="empty-state">No posts yet.</p>
 
@@ -23,7 +29,7 @@ show_title: false
     Posts grouped by year. `group_by_exp` lets us pull the year out of the date;
     site.posts is already newest-first, so the groups come out in order too.
   {%- endcomment -%}
-  {%- assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+  {%- assign posts_by_year = listed | group_by_exp: "post", "post.date | date: '%Y'" -%}
 
   {%- for year in posts_by_year -%}
     <h2 class="year-heading">{{ year.name }}</h2>

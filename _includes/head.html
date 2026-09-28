@@ -9,6 +9,14 @@
 {%- endcomment -%}
 {%- seo -%}
 
+{%- comment -%}
+  An unlisted page is reachable by its URL but linked from nowhere. Keeping it
+  out of the sitemap is not enough on its own, so ask crawlers not to index it.
+{%- endcomment -%}
+{%- if page.unlisted -%}
+<meta name="robots" content="noindex, nofollow">
+{%- endif -%}
+
 {%- feed_meta -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

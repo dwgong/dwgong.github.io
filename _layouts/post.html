@@ -39,27 +39,53 @@ layout: default
 
   <footer class="post-footer">
     {%- comment -%}
-      site.posts is newest-first, so "previous" in Jekyll's sense is the newer
-      post. Labelled here by date rather than by array position, which is what
-      a reader actually expects.
+      Older/newer navigation. Deliberately not Jekyll's page.next and
+      page.previous: those walk every post, including ones marked
+      `unlisted: true`, which must not be linked to. So walk a filtered list
+      and find this post's place in it.
+
+      site.posts is newest-first, so the entry before this one is the newer
+      post. Labelled by date rather than array position, which is what a
+      reader actually expects.
     {%- endcomment -%}
-    <nav class="post-nav" aria-label="More posts">
-      {%- if page.next -%}
-        <a class="post-nav-link" href="{{ page.next.url | relative_url }}">
-          <span class="post-nav-label">Newer</span>
-          <span class="post-nav-title">{{ page.next.title }}</span>
-        </a>
-      {%- else -%}
-        <span></span>
+    {%- assign nav_posts = site.posts | where_exp: "item", "item.unlisted != true" -%}
+    {%- assign cur = -1 -%}
+    {%- for item in nav_posts -%}
+      {%- if item.url == page.url -%}{%- assign cur = forloop.index0 -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%}
+      cur stays -1 when this post is itself unlisted; it then gets no
+      navigation rather than pointing at neighbours it isn't part of.
+    {%- endcomment -%}
+    {%- if cur >= 0 -%}
+      {%- if cur > 0 -%}
+        {%- assign i = cur | minus: 1 -%}
+        {%- assign newer = nav_posts[i] -%}
+      {%- endif -%}
+      {%- assign i = cur | plus: 1 -%}
+      {%- if i < nav_posts.size -%}
+        {%- assign older = nav_posts[i] -%}
       {%- endif -%}
 
-      {%- if page.previous -%}
-        <a class="post-nav-link post-nav-right" href="{{ page.previous.url | relative_url }}">
-          <span class="post-nav-label">Older</span>
-          <span class="post-nav-title">{{ page.previous.title }}</span>
-        </a>
-      {%- endif -%}
-    </nav>
+      <nav class="post-nav" aria-label="More posts">
+        {%- if newer -%}
+          <a class="post-nav-link" href="{{ newer.url | relative_url }}">
+            <span class="post-nav-label">Newer</span>
+            <span class="post-nav-title">{{ newer.title }}</span>
+          </a>
+        {%- else -%}
+          <span></span>
+        {%- endif -%}
+
+        {%- if older -%}
+          <a class="post-nav-link post-nav-right" href="{{ older.url | relative_url }}">
+            <span class="post-nav-label">Older</span>
+            <span class="post-nav-title">{{ older.title }}</span>
+          </a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
 
     <p class="post-back"><a href="{{ '/blog/' | relative_url }}">← All posts</a></p>
   </footer>
