@@ -14,9 +14,18 @@
     caption — optional. Markdown is not processed here; plain text.
     width   — optional. Omit for column width; "wide" to bleed past the text
               column (good for plots), "full" for edge-to-edge.
+    zoom    — optional, defaults on. The image links to itself so a reader can
+              open it at full resolution, which dense multi-panel figures need.
+              Pass zoom="false" for a figure that is already legible inline.
 {%- endcomment -%}
 <figure class="figure{% if include.width %} figure-{{ include.width }}{% endif %}">
-  <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+  {%- if include.zoom == "false" -%}
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+  {%- else -%}
+    <a class="figure-zoom" href="{{ include.src | relative_url }}" title="Open at full size">
+      <img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+    </a>
+  {%- endif -%}
   {%- if include.caption -%}
     <figcaption>{{ include.caption }}</figcaption>
   {%- endif -%}

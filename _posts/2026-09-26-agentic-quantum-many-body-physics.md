@@ -9,13 +9,11 @@ Our agentic AI system consists of two interacting loops: a **scientist loop** th
 decides what to investigate, and an **engineer loop** that keeps the experiment
 running.
 
-<!-- Figure 2 goes here. Save the image to assets/img/ and uncomment:
 {% include figure.html
    src="/assets/img/figure-2-loops.png"
-   alt="Two interacting loops: a scientist loop proposing and interpreting experiments, and an engineer loop monitoring and repairing the apparatus"
-   caption="Figure 2. The scientist loop and the engineer loop, and how they interact."
+   alt="Two concentric cycles. The outer scientist loop runs knowledge to hypothesis to experiments to conclusions and back, improving knowledge. The inner engineer loop runs error syndromes to diagnosis to action to apparatus, stabilising it. The two meet where the experiments run on the apparatus"
+   caption="Figure 2. The scientist loop and the engineer loop, and how they interact. The experiments the outer loop designs run on the apparatus the inner loop keeps stable."
    width="wide" %}
--->
 
 ## The scientist loop
 

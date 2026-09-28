@@ -25,17 +25,61 @@ experimental run. This provides the means to carry out experiments proposed by t
 scientist loop.
 
 To maintain reliable operation, the AI also has access to selected measurements
-and controls from essential equipment:
+and controls from essential equipment — laser frequency, laser amplifiers,
+doubling cavities, and temperature and pressure probes.
 
-- Laser frequency
-- Laser amplifier
-- Doubling cavities
-- Temperature and pressure probes
+{% include figure.html
+   src="/assets/img/monitor-laser-frequency.png"
+   alt="Laser frequency monitor showing the 556 nm laser at 539386.795 GHz, locked to a cavity at 0.94 MHz, with a scatter trace of recent frequency readings"
+   caption="Laser frequency: the 556 nm cooling laser, its lock status, and its recent drift." %}
+
+{% include figure.html
+   src="/assets/img/monitor-laser-amplifier.png"
+   alt="Laser amplifier panel showing 14.20 A total current across three stages, seven temperature readouts, and five photodiode values"
+   caption="Laser amplifier: stage currents, temperatures and photodiode levels, with ramp and abort controls." %}
+
+{% include figure.html
+   src="/assets/img/monitor-cavity-lock.png"
+   alt="Cavity lock panel reading LOCKED, with a transmission trace near 1.05 V and an error signal centred on zero"
+   caption="Doubling cavities: transmission and error signal for the 399 nm cavity lock." %}
+
+{% include figure.html
+   src="/assets/img/monitor-oscilloscope.png"
+   alt="Oscilloscope screen showing a slow yellow sinusoid at about 18.7 Hz above two flatter cyan and magenta traces"
+   caption="Oscilloscopes carry the lock and beam signals the agent reads directly." %}
 
 Environmental sensors provide additional context: changes in temperature and
 humidity, for example, may help explain drift in sensitive optical alignments.
+
+{% include figure.html
+   src="/assets/img/monitor-room-temperature.png"
+   alt="Two days of room temperature for five locations, each holding within a few tenths of a degree, with the UV path near 22.4 C and the glass cell near 19.5 C"
+   caption="Room temperature across the experiment and laser tables, with alert thresholds dashed."
+   width="wide" %}
+
+{% include figure.html
+   src="/assets/img/monitor-room-humidity.png"
+   alt="Two days of room humidity for five locations, normally between 29 and 40 percent, with a sharp six-hour excursion above 43 percent on the afternoon of 09/22"
+   caption="Room humidity over the same window. The excursion on the afternoon of 09/22 is the kind of event that explains a drifting alignment after the fact."
+   width="wide" %}
+
 These observations and controls support the engineer loop, allowing it to connect
 symptoms to possible causes, take corrective action, and check the result.
+
+## The monitor loop
+
+{% include figure.html
+   src="/assets/img/monitor-loop.png"
+   alt="Four-stage cycle: syndromes feed rules, rules feed a monitor agent that picks machine status and suggests actions, an experiment agent takes or rejects the suggestion and improves the rules and syndromes"
+   caption="The monitor loop. Syndromes become rules, rules become a status and a suggested action, and the experiment agent decides whether to take it — then improves the syndromes and rules it was judged by."
+   width="wide" %}
+
+Measured syndromes — data curves and fits, subsystem metrics, instrument
+readouts — are turned into a per-subsystem verdict of *fine*, *check* or *fault*
+by an explicit threshold rule. The monitor agent reads those verdicts, picks a
+machine status and suggests an action. The experiment agent then decides whether
+to take the suggestion, and feeds what it learns back into the rules and
+syndromes themselves, so the diagnosis improves with use.
 
 ## Calibration
 
@@ -56,6 +100,12 @@ At 60 G it feeds each fitted centre into the next scan: first the $$^3P_1$$,
 $$m_J = +1$$ line, then the 308 nm Rydberg resonance (the survival revival), and
 finally the Autler–Townes doublet, whose splitting gives the Rydberg-laser Rabi
 frequency.
+
+{% include figure.html
+   src="/assets/img/daily-calibration.png"
+   alt="A 40-minute calibration timeline beside a level diagram of Yb-174 and six fitted spectra: the 399 nm line, the 556 nm mJ=0 and |mJ|=1 lines at low field, and the 556 nm mJ=+1 line, 616 revival and Autler-Townes doublet at 60 G"
+   caption="A full daily calibration, start to finish in 40 minutes. The timeline on the left shows where the agent re-ran a scan on its own: the 556 |mJ|=1 line was re-windowed and the 616 revival re-scanned more finely. Click to open at full size."
+   width="wide" %}
 
 ## Optimization: re-flattening 1068 traps
 
@@ -81,6 +131,12 @@ measurement noise. **In four rounds and about an hour of machine time, the
 site-to-site spread fell from 7% to about 2%.** The agent then installed the
 result as the array the experiment runs on.
 
+{% include figure.html
+   src="/assets/img/trap-depth-feedback.png"
+   alt="A 68-minute feedback timeline, the four steps of one round, before and after maps of trap depth across the array showing the red and blue patchwork flattening out, the depth CV falling 7.05 to 4.02 to 2.55 to 2.22 to 1.54 percent, and a radial profile flattening toward the array edge"
+   caption="Trap-depth feedback, four rounds in 68 minutes: depth CV 7.05% to 1.54%. Panels a and b are the per-site depth map before and after. The phase change the agent asked of the hologram shrank each round, from 0.026 rad down to 0.007 rad — a gentle correction, as instructed. Click to open at full size."
+   width="wide" %}
+
 ## Optimization: tuning the Rydberg excitation
 
 Our experiment uses two laser pulses to lift each trapped atom into a highly
@@ -88,13 +144,11 @@ excited state. How well that works depends on a handful of knobs: the two laser
 frequencies, how long each pulse lasts, and how far apart in time they fire. The
 knobs interact, so turning them one at a time misses the best setting.
 
-<!-- The five-panel figure (a-e) goes here. Save it to assets/img/ and uncomment:
 {% include figure.html
-   src="/assets/img/rydberg-optimization.png"
-   alt="Five panels: a two-frequency map showing a diagonal ridge, a walk along the ridge, a 3-D timing lattice, a fitted plane of good settings, and a repetition test of top candidates"
-   caption="The agent's optimization path: map, find the structure, follow it, refine, and verify."
+   src="/assets/img/stirap-optimization.png"
+   alt="A 63-minute timeline and flow chart beside five result panels: a two-frequency heatmap with a diagonal ridge, a one-dimensional scan along the ridge peaking at 97.3 percent, a stack of delay slices forming a tilted plane, a test of on-plane against off-plane settings, and a final verification of two candidates that agree within 1.2 sigma"
+   caption="The STIRAP optimization, 63 minutes end to end. Panels a-e follow the text: the ridge in the frequency map, the walk along it, the 3-D timing lattice and the plane fitted to it, the on- versus off-plane test, and the final verification. The aborted scan at +33 min is visible in the timeline — the agent dropped it once it realised the delay had to be scanned too. Click to open at full size."
    width="wide" %}
--->
 
 It started from a map of the two frequencies (panel a). Good settings there don't
 form a single spot but a diagonal line, a "ridge," because raising one frequency
@@ -124,6 +178,12 @@ the structure, follow it, refine, and verify before believing it.
 Our experiment traps individual atoms in different kinds of arrays and excites
 them to Rydberg states, highly excited states in which neighbouring atoms interact
 strongly.
+
+{% include figure.html
+   src="/assets/img/discovery-rydberg-loss.png"
+   alt="A five-box chain from question through two hypotheses, experiment, result and conclusion, above eight panels: the observed 4.8x lifetime drop at close spacing, the competing predictions of the distance and number hypotheses, the square, chain and pair geometries all at 14 micron spacing, decay curves for one, two and four neighbours, the measured lifetimes against both predictions, the extra loss rate growing faster than one-for-one, a repeat on a later date, and a check that close pairs are lost together"
+   caption="The full investigation on one page. Lifetime falls 55, 40, 30 and 11 microseconds for zero, one, two and four neighbours at fixed 14 micron spacing — so it is the number of neighbours that matters, but going from one to four neighbours raises the loss about tenfold rather than fourfold. Click to open at full size."
+   width="wide" %}
 
 **a)** We observed that atoms in closely spaced arrays are lost substantially
 faster than atoms in widely spaced arrays, and that this loss rate does not depend
@@ -158,6 +218,29 @@ are lost in correlated pairs.
 The full scientific cycle, from hypothesis formulation through experimental
 design, data acquisition and analysis to a validated conclusion, was carried out
 by the agent in response to one human question.
+
+## A second investigation: the third dip
+
+The same pattern ran on a different puzzle. Dressing the 308 nm line with 556 nm
+light should split it into two dips — an Autler–Townes pair. We saw three, all at
+more than ten sigma. Where does the third come from?
+
+{% include figure.html
+   src="/assets/img/discovery-autler-townes.png"
+   alt="A five-box chain from question through three hypotheses, four tests, result and conclusion, above twelve panels: the observed three-dip spectrum, sketched predictions for undressed, spur and trapped atoms, a table of what each hypothesis predicts per test, spectra as the 556 power is turned down, the third dip moving with dressing strength, a test holding the trap on, a no-light control that comes out flat, a comparison against the full-trap ceiling, and a four-level model reproducing the three-dip structure"
+   caption="Three hypotheses — undressed atoms, an electronic spur, or atoms still in the trap — and four scans, each of which splits them differently. The bare line is a peak rather than a dip, ruling out undressed atoms; the third dip moves with the 556 power and stays a single line, ruling out a spur copy. Trapped atoms remain the best candidate, though the figure notes the dip sits further out than a fully-on trap can account for. Click to open at full size."
+   width="wide" %}
+
+The conclusion here is narrower than in the neighbour-loss case: the agent
+eliminated two of three hypotheses and identified the third as the best
+remaining candidate, while flagging a quantitative gap it could not close — the
+dip sits about 0.8 MHz further to the blue than even a fully-on trap would
+explain. The proposed next step is a trap-depth series to pin down the
+intercept.
+
+<!-- The source document has no write-up for this second case. The summary above
+     is read off the figure itself; expand it with the real narrative when you
+     have time, or delete this section if it is too preliminary to publish. -->
 
 ---
 

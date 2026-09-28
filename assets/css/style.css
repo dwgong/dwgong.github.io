@@ -340,7 +340,21 @@ a:hover { text-decoration-thickness: 2px; }
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  background: var(--bg-soft);
+  /* A pale backing so screenshots with transparent margins, and figures that
+     are mostly white, still read as a distinct object in dark mode. */
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+
+/* Dense multi-panel figures are unreadable at column width, so the image
+   links to itself. Hint that it is clickable without shouting about it. */
+.figure-zoom {
+  display: block;
+  cursor: zoom-in;
+}
+
+.figure-zoom:hover img {
+  border-color: var(--rule-strong);
 }
 
 .figure figcaption {

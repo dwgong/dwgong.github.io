@@ -32,13 +32,11 @@ signatures of topological spin liquids
 symmetry breaking in the dipolar XY model
 ([Chen et al., 2023](https://doi.org/10.1038/s41586-023-05859-2)).
 
-<!-- Figure 1 goes here. Save the image to assets/img/ and uncomment:
 {% include figure.html
    src="/assets/img/figure-1-apparatus.png"
-   alt="Block diagram of a neutral Yb atom array apparatus: lasers, electronics, imaging and control"
-   caption="Figure 1. The basic building blocks of a typical neutral Yb atom array system."
+   alt="Block diagram centred on an array of trapped Yb atoms, branching to optical tweezers, atom source and vacuum, control electronics, imaging, monitoring, cooling and imaging lasers, Rydberg excitation, and magnetic and electric fields, each expanded into its component hardware"
+   caption="Figure 1. The basic building blocks of a typical neutral Yb atom array system. Click to open at full size."
    width="wide" %}
--->
 
 ## AI for science
 
@@ -87,7 +85,8 @@ experiments that reach the phases of interest despite these imperfections.
 
 Recent numerical studies predict that the dipolar XY model on a breathing kagome
 lattice hosts a gapped chiral spin liquid (CSL), a topological phase that has not
-yet been observed.[^csl]
+yet been observed
+([Machado, Chern, Zaletel & Yao, 2026](https://doi.org/10.48550/arXiv.2603.25784)).
 
 We use our Yb Rydberg quantum simulator, which offers tunable geometry and
 site-resolved addressing, to train a machine-learning model on the map from local
@@ -104,8 +103,6 @@ non-idealities such as residual temperature, positional disorder, and diabatic
 errors. We then use it to design preparation protocols — local-field ramps,
 anyon-pinning potentials, and edge geometries — that bring the experiment into the
 CSL regime and extend studies beyond the reach of classical simulation.
-
-[^csl]: Breathing-kagome reference and DOI still to be filled in.
 
 ## Science for AI
 
