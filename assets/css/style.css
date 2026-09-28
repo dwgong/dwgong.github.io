@@ -333,12 +333,24 @@ a:hover { text-decoration-thickness: 2px; }
 
 .figure {
   margin: 2rem 0;
+  /* Shrink to the image's own width so the caption lines up with it rather
+     than running the full column under a narrow screenshot. */
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .figure img {
   display: block;
-  width: 100%;
+  /* `width: auto` matters: it stops a small screenshot being blown up past
+     its natural size, which just makes it blurry. Images scale down to fit
+     the column but never up. */
+  width: auto;
   height: auto;
+  max-width: 100%;
+  /* No single figure should swallow the whole screen. With width and height
+     both auto, this scales tall figures down proportionally. */
+  max-height: 78vh;
   border-radius: var(--radius);
   /* A pale backing so screenshots with transparent margins, and figures that
      are mostly white, still read as a distinct object in dark mode. */
@@ -365,11 +377,17 @@ a:hover { text-decoration-thickness: 2px; }
   color: var(--text-muted);
 }
 
-/* Wide and full figures escape the text column. `width: 100vw` with a
-   negative margin is the standard full-bleed trick. */
+/* Small figures: incidental UI screenshots that are illustrative rather than
+   evidence. Kept deliberately modest so they don't compete with the results. */
+.figure-small { width: 26rem; }
+
+/* Wide figures escape the text column. The explicit max-width is needed to
+   override the `max-width: 100%` on .figure above, which would otherwise
+   clamp them straight back to column width. */
 @media (min-width: 68rem) {
   .figure-wide {
     width: var(--measure-wide);
+    max-width: var(--measure-wide);
     margin-inline: calc((var(--measure) - var(--measure-wide)) / 2);
   }
 }

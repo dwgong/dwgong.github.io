@@ -1,6 +1,6 @@
 ---
 title: "Neutral-atom arrays and AI, in both directions"
-description: "Why Rydberg tweezer arrays are a good place to put AI to work — and why they might also be a good place to train it. Part 1 of 3."
+description: "Why Rydberg tweezer arrays are a good place to put AI to work — and why they might also be a good place to train it."
 date: 2026-09-24
 tags: [rydberg, ai-for-science, research-notes]
 ---
@@ -36,7 +36,7 @@ symmetry breaking in the dipolar XY model
    src="/assets/img/figure-1-apparatus.png"
    alt="Block diagram centred on an array of trapped Yb atoms, branching to optical tweezers, atom source and vacuum, control electronics, imaging, monitoring, cooling and imaging lasers, Rydberg excitation, and magnetic and electric fields, each expanded into its component hardware"
    caption="Figure 1. The basic building blocks of a typical neutral Yb atom array system. Click to open at full size."
-   width="wide" %}
+   %}
 
 ## AI for science
 
